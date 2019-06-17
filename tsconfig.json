@@ -18,6 +18,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@kurtz1993/ngx-toasts": [
+        "dist/kurtz1993/ngx-toasts"
+      ],
+      "@kurtz1993/ngx-toasts/*": [
+        "dist/kurtz1993/ngx-toasts/*"
+      ]
+    }
   }
 }
