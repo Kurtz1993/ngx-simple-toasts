@@ -23,7 +23,7 @@ import { NgxToastComponent } from '../../components/ngx-toast/ngx-toast.componen
   `,
 })
 export class NgxToastsContainerComponent implements OnInit, OnDestroy {
-  @ViewChild('toastsContainer', { read: ViewContainerRef, static: false })
+  @ViewChild('toastsContainer', { read: ViewContainerRef, static: true })
   container: ViewContainerRef;
 
   @HostBinding('class.hidden')
