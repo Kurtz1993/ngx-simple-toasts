@@ -10,7 +10,7 @@ export interface NgxToastConfig {
   /**
    * Toast type. This will determine which styles to use.
    */
-  type: "success" | "error" | "warning" | "info";
+  type: 'success' | 'error' | 'warning' | 'info';
   /**
    * Specifies if the toast can be closed by pressing the close button.
    */
