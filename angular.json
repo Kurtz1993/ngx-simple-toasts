@@ -124,7 +124,7 @@
       "projectType": "library",
       "root": "projects/kurtz1993/ngx-toasts",
       "sourceRoot": "projects/kurtz1993/ngx-toasts/src",
-      "prefix": "lib",
+      "prefix": "ngx",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
