@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
-import { NgxToastsComponent } from './ngx-toasts.component';
+import { CommonModule } from '@angular/common';
+
+import { NgxToastComponent } from './components/ngx-toast/ngx-toast.component';
 
 @NgModule({
-  declarations: [NgxToastsComponent],
+  declarations: [NgxToastComponent],
   imports: [
+    CommonModule
   ],
-  exports: [NgxToastsComponent]
+  exports: [NgxToastComponent]
 })
 export class NgxToastsModule { }
