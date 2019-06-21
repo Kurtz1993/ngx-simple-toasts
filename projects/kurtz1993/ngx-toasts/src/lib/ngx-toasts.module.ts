@@ -9,6 +9,7 @@ import { NgxToastsService } from './services/ngx-toasts.service';
   declarations: [NgxToastComponent, NgxToastsContainerComponent],
   providers: [NgxToastsService],
   imports: [CommonModule],
+  entryComponents: [NgxToastComponent],
   exports: [NgxToastComponent, NgxToastsContainerComponent],
 })
 export class NgxToastsModule {}
