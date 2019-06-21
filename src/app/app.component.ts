@@ -12,6 +12,6 @@ export class AppComponent {
   constructor(private toastService: NgxToastsService) {}
 
   createToast(toastType: 'success' | 'error' | 'warning' | 'info'): void {
-    this.toastService.showToast({ type: toastType, message: 'Hello' });
+    this.toastService.showToast({ type: toastType, message: toastType });
   }
 }
