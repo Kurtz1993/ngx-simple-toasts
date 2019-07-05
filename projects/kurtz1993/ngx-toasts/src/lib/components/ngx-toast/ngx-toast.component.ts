@@ -1,4 +1,12 @@
-import { Component, OnInit, Input, Output, EventEmitter, HostBinding } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  HostBinding,
+  HostListener,
+} from '@angular/core';
 import { timer } from 'rxjs';
 
 import { NgxToastConfig } from '../../models/toast-config.model';
@@ -18,9 +26,6 @@ const CLOSING_CLASS = `${BASE_CLASS}--closing`;
       <p [className]="baseClass + '__message'">
         {{ config.message }}
       </p>
-      <button [className]="baseClass + '__close'" (click)="closeToast()" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
     </div>
 
     <div
@@ -55,6 +60,7 @@ export class NgxToastComponent implements OnInit {
     }
   }
 
+  @HostListener('click')
   closeToast() {
     if (this.componentClasses.includes(CLOSING_CLASS)) {
       return;
