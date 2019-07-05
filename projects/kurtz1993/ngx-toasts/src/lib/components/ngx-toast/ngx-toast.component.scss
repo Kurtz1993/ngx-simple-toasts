@@ -6,9 +6,10 @@ $toast-border-radius: 4px;
 
 :host {
   display: block;
+  pointer-events: auto;
   font-size: 1.1rem;
   font-family: sans-serif;
-  max-width: 90%;
+  max-width: 320px;
   min-width: 300px;
   // border: 1px solid;
   border-radius: $toast-border-radius;
@@ -68,6 +69,7 @@ $toast-border-radius: 4px;
 
   &__message {
     margin: 0;
+    flex: 1;
   }
 
   &__close {
@@ -77,6 +79,7 @@ $toast-border-radius: 4px;
     background-color: transparent;
     cursor: pointer;
     color: white;
+    padding: 0;
   }
 }
 
