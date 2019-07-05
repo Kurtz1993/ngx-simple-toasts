@@ -27,20 +27,7 @@ import { NgxToastComponent } from '../../components/ngx-toast/ngx-toast.componen
     '[attr.aria-live]': 'assertive',
     '[attr.aria-atomic]': 'true',
   },
-  styles: [
-    `
-      :host {
-        display: flex;
-        flex-direction: column;
-        pointer-events: none;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-      }
-    `,
-  ],
+  styleUrls: ['./ngx-toasts-container.component.scss'],
 })
 export class NgxToastsContainerComponent implements OnInit, OnDestroy {
   @ViewChild('toastsContainer', { read: ViewContainerRef, static: true })
