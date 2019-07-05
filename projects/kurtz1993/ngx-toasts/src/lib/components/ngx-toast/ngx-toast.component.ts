@@ -3,21 +3,25 @@ import { timer } from 'rxjs';
 
 import { NgxToastConfig } from '../../models/toast-config.model';
 
+const BASE_CLASS = 'ngx-toast';
+const CLOSING_CLASS = `${BASE_CLASS}--closing`;
+
 @Component({
   selector: 'ngx-toast',
   template: `
-    <div class="ngx-toast__container">
-      <p class="ngx-toast__message">
+    <div [className]="baseClass + '__container'" role="alert" aria-live="assertive" aria-atomic="true">
+      <p [className]="baseClass + '__message'">
         {{ config.message }}
       </p>
-      <button class="ngx-toast__close" (click)="closeToast()" aria-label="Close toast">
-        &times;
+      <button [className]="baseClass + '__close'" (click)="closeToast()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
       </button>
     </div>
 
     <div
       *ngIf="config.timeout"
       class="progressbar"
+      aria-hidden="true"
       [ngStyle]="{ animationDuration: animationDuration, animationPlayState: 'running' }"
     ></div>
   `,
@@ -29,13 +33,19 @@ export class NgxToastComponent implements OnInit {
   @Output()
   remove = new EventEmitter<number>();
   @HostBinding('class')
-  componentClasses: string;
+  get componentClasses(): string {
+    return this.toastClasses.join(' ');
+  }
   get animationDuration(): string {
     return `${this.config.timeout}ms`;
   }
 
+  baseClass = BASE_CLASS;
+
+  private toastClasses: string[] = [BASE_CLASS];
+
   ngOnInit() {
-    this.componentClasses = `ngx-toast ngx-toast--${this.config.type}`;
+    this.toastClasses.push(`${BASE_CLASS}--${this.config.type}`);
 
     if (this.config.timeout) {
       timer(this.config.timeout).subscribe({
@@ -45,7 +55,11 @@ export class NgxToastComponent implements OnInit {
   }
 
   closeToast() {
-    this.componentClasses += ' ngx-toast--closing';
+    if (this.toastClasses.includes(CLOSING_CLASS)) {
+      return;
+    }
+
+    this.toastClasses.push(CLOSING_CLASS);
     timer(500).subscribe({
       complete: () => this.remove.emit(this.config.id),
     });
