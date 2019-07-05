@@ -21,6 +21,26 @@ import { NgxToastComponent } from '../../components/ngx-toast/ngx-toast.componen
   template: `
     <ng-template class="ngx-toasts-container" #toastsContainer></ng-template>
   `,
+  // tslint:disable-next-line: no-host-metadata-property
+  host: {
+    '[attr.role]': 'alert',
+    '[attr.aria-live]': 'assertive',
+    '[attr.aria-atomic]': 'true',
+  },
+  styles: [
+    `
+      :host {
+        display: flex;
+        flex-direction: column;
+        pointer-events: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+      }
+    `,
+  ],
 })
 export class NgxToastsContainerComponent implements OnInit, OnDestroy {
   @ViewChild('toastsContainer', { read: ViewContainerRef, static: true })
