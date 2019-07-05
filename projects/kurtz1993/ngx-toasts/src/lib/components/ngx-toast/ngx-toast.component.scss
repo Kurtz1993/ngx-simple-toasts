@@ -11,11 +11,11 @@ $toast-border-radius: 4px;
   font-family: sans-serif;
   max-width: 320px;
   min-width: 300px;
-  // border: 1px solid;
   border-radius: $toast-border-radius;
   margin-bottom: 0.8rem;
   transition: all 0.5s;
   animation: fade-in 250ms ease-in;
+  cursor: pointer;
 
   &.ngx-toast {
     color: white;
@@ -26,7 +26,14 @@ $toast-border-radius: 4px;
       .progressbar {
         background-color: darken($success, 10%);
       }
-      // border-color: darken($success, 6%);
+
+      &:hover {
+        background-color: darken($success, 10%);
+
+        .progressbar {
+          background-color: darken($success, 15%);
+        }
+      }
     }
 
     &--error {
@@ -34,7 +41,14 @@ $toast-border-radius: 4px;
       .progressbar {
         background-color: darken($error, 10%);
       }
-      // border-color: darken($error, 6%);
+
+      &:hover {
+        background-color: darken($error, 10%);
+
+        .progressbar {
+          background-color: darken($error, 15%);
+        }
+      }
     }
 
     &--warning {
@@ -42,7 +56,14 @@ $toast-border-radius: 4px;
       .progressbar {
         background-color: darken($warning, 10%);
       }
-      // border-color: darken($warning, 6%);
+
+      &:hover {
+        background-color: darken($warning, 10%);
+
+        .progressbar {
+          background-color: darken($warning, 15%);
+        }
+      }
     }
 
     &--info {
@@ -50,7 +71,14 @@ $toast-border-radius: 4px;
       .progressbar {
         background-color: darken($info, 10%);
       }
-      // border-color: darken($info, 6%);
+
+      &:hover {
+        background-color: darken($info, 10%);
+
+        .progressbar {
+          background-color: darken($info, 15%);
+        }
+      }
     }
 
     &--closing {
@@ -64,7 +92,7 @@ $toast-border-radius: 4px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 1rem 0.5rem 1rem;
   }
 
   &__message {
