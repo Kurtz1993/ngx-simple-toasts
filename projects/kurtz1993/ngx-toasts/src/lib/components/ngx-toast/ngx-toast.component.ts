@@ -9,7 +9,12 @@ const CLOSING_CLASS = `${BASE_CLASS}--closing`;
 @Component({
   selector: 'ngx-toast',
   template: `
-    <div [className]="baseClass + '__container'" role="alert" aria-live="assertive" aria-atomic="true">
+    <div
+      [className]="baseClass + '__container'"
+      role="alert"
+      aria-live="assertive"
+      aria-atomic="true"
+    >
       <p [className]="baseClass + '__message'">
         {{ config.message }}
       </p>
@@ -33,19 +38,15 @@ export class NgxToastComponent implements OnInit {
   @Output()
   remove = new EventEmitter<number>();
   @HostBinding('class')
-  get componentClasses(): string {
-    return this.toastClasses.join(' ');
-  }
+  componentClasses: string = BASE_CLASS;
   get animationDuration(): string {
     return `${this.config.timeout}ms`;
   }
 
   baseClass = BASE_CLASS;
 
-  private toastClasses: string[] = [BASE_CLASS];
-
   ngOnInit() {
-    this.toastClasses.push(`${BASE_CLASS}--${this.config.type}`);
+    this.componentClasses += ` ${BASE_CLASS}--${this.config.type}`;
 
     if (this.config.timeout) {
       timer(this.config.timeout).subscribe({
@@ -55,11 +56,11 @@ export class NgxToastComponent implements OnInit {
   }
 
   closeToast() {
-    if (this.toastClasses.includes(CLOSING_CLASS)) {
+    if (this.componentClasses.includes(CLOSING_CLASS)) {
       return;
     }
 
-    this.toastClasses.push(CLOSING_CLASS);
+    this.componentClasses += ` ${CLOSING_CLASS}`;
     timer(500).subscribe({
       complete: () => this.remove.emit(this.config.id),
     });
