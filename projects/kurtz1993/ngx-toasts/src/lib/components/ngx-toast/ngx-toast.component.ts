@@ -38,16 +38,16 @@ export class NgxToastComponent implements OnInit {
     this.componentClasses = `ngx-toast ngx-toast--${this.config.type}`;
 
     if (this.config.timeout) {
-      timer(this.config.timeout).subscribe(null, null, () => {
-        this.closeToast();
+      timer(this.config.timeout).subscribe({
+        complete: () => this.closeToast(),
       });
     }
   }
 
   closeToast() {
     this.componentClasses += ' ngx-toast--closing';
-    timer(500).subscribe(() => {}, null, () => {
-      this.remove.emit(this.config.id);
+    timer(500).subscribe({
+      complete: () => this.remove.emit(this.config.id),
     });
   }
 }
